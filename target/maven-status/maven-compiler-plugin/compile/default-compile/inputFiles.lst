@@ -1,0 +1,15 @@
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/config/DemoSecurityConfig.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/dao/CustomerDAOImpl.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/rest/CustomerRestController.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/config/SecurityWebApplicationInitializer.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/config/MySpringMvcDispatcherServletInitializer.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/rest/CustomerErrorResponse.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/config/DemoAppConfig.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/service/CustomerServiceImpl.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/service/CustomerService.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/controller/CustomerController.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/rest/CustomerRestExceptionHandler.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/dao/CustomerDAO.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/entity/Customer.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/controller/AppController.java
+/Users/lubomyr/Documents/eclipse-workspace/SpringCRM-RestAPI/src/main/java/SpringCrmRestAPI/rest/CustomerNotFoundException.java

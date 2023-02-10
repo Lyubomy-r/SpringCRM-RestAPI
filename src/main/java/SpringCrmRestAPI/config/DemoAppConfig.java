@@ -37,6 +37,17 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	// define a bean for ViewResolver
+	
+	@Bean
+	public ViewResolver viewResolver() {
+		
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		
+		viewResolver.setPrefix("/WEB-INF/view/");
+		viewResolver.setSuffix(".jsp");
+		
+		return viewResolver;
+	}
 
 	@Bean
 	public DataSource myDataSource() {
@@ -58,6 +69,38 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		
 		// set database connection props
 		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
+		myDataSource.setUser(env.getProperty("jdbc.user"));
+		myDataSource.setPassword(env.getProperty("jdbc.password"));
+		
+		// set connection pool props
+		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
+		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));		
+		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
+
+		return myDataSource;
+	}
+	
+	@Bean
+	public DataSource myDataSourceAuthorization() {
+		
+		// create connection pool
+		ComboPooledDataSource myDataSource = new ComboPooledDataSource();
+
+		// set the jdbc driver
+		try {
+			myDataSource.setDriverClass("com.mysql.jdbc.Driver");		
+		}
+		catch (PropertyVetoException exc) {
+			throw new RuntimeException(exc);
+		}
+		
+		// for sanity's sake, let's log url and user ... just to make sure we are reading the data
+		logger.info("jdbc.url.authorization=" + env.getProperty("jdbc.url"));
+		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
+		
+		// set database connection props
+		myDataSource.setJdbcUrl(env.getProperty("jdbc.url.authorization"));
 		myDataSource.setUser(env.getProperty("jdbc.user"));
 		myDataSource.setPassword(env.getProperty("jdbc.password"));
 		
@@ -119,6 +162,13 @@ public class DemoAppConfig implements WebMvcConfigurer {
 
 		return txManager;
 	}	
+	
+	 @Override
+	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	        registry
+	          .addResourceHandler("/resources/**")
+	          .addResourceLocations("/resources/"); 
+	    }	
 	
 }
 

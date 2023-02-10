@@ -8,10 +8,11 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<springframework.version>5.0.6.RELEASE</springframework.version>
+		<springframework.version>5.3.9</springframework.version>
 		<hibernate.version>5.4.1.Final</hibernate.version>
 		<mysql.connector.version>8.0.29</mysql.connector.version>
 		<c3po.version>0.9.5.2</c3po.version>
+		<springsecurity.version>5.3.7.RELEASE</springsecurity.version>
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -44,6 +45,25 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.5</version>
 		</dependency>
+		
+		<!--Sspring Security-->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>${springsecurity.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>${springsecurity.version}</version>
+		</dependency>	
+		
+		<dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-taglibs</artifactId>
+		    	<version>${springsecurity.version}</version>
+		</dependency>	
 
 		<!-- Hibernate -->
 		<dependency>
