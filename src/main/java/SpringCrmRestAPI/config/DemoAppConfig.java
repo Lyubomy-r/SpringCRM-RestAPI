@@ -13,8 +13,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -169,6 +176,42 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	          .addResourceHandler("/resources/**")
 	          .addResourceLocations("/resources/"); 
 	    }	
+	 
+	 @Bean
+	 public DataSource dataSource(){
+	               return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
+	            		   .setName("codeDB")
+	            		   .build();
+	 }
+	 
+	 @Bean
+	 public JpaVendorAdapter jpaVendorAdapter() {
+		 
+		 HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+		 adapter.setDatabase(Database.H2);
+		 adapter.setShowSql(true);
+		 adapter.setGenerateDdl(true);
+		 return adapter;
+	 }
+	 
+	 @Bean
+	 public LocalContainerEntityManagerFactoryBean localContainerEMF(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter  ) {
+		 LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean(); 	
+		 emf.setDataSource(dataSource);
+		 emf.setJpaVendorAdapter(jpaVendorAdapter);
+		 emf.setPersistenceUnitName("basicEntities");
+		 emf.setPackagesToScan("SpringCrmRestAPI");
+		 return emf;
+	 }	 
+	     
+//	 @Bean("entityManagerFactory")
+//	 public LocalEntityManagerFactoryBean entityManagerFactoryBean( ) {
+//		 LocalEntityManagerFactoryBean emfb = new LocalEntityManagerFactoryBean(); 	
+//		
+//		 emfb.setPersistenceUnitName("basicEntities");
+//	
+//		 return emfb;
+//	 }	 
 	
 }
 
