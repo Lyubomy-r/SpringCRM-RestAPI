@@ -55,6 +55,16 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		
 		return viewResolver;
 	}
+	
+//	@Bean
+//	public DataSource dataSource(){
+//	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//	    dataSource.setDriverClassName("jdbc.driver");
+//	    dataSource.setUrl("jdbc.url");
+//	    dataSource.setUsername( "jdbc.user" );
+//	    dataSource.setPassword( "jdbc.password" );
+//	    return dataSource;
+//	}
 
 	@Bean
 	public DataSource myDataSource() {
@@ -145,19 +155,19 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		return intPropVal;
 	}	
 	
-	@Bean
-	public LocalSessionFactoryBean sessionFactory(){
-		
-		// create session factorys
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		
-		// set the properties
-		sessionFactory.setDataSource(myDataSource());
-		sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
-		sessionFactory.setHibernateProperties(getHibernateProperties());
-		
-		return sessionFactory;
-	}
+//	@Bean
+//	public LocalSessionFactoryBean sessionFactory(){
+//		
+//		// create session factorys
+//		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+//		
+//		// set the properties
+//		sessionFactory.setDataSource(myDataSource());
+//		sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
+//		sessionFactory.setHibernateProperties(getHibernateProperties());
+//		
+//		return sessionFactory;
+//	}
 	
 	@Bean
 	@Autowired
@@ -177,29 +187,29 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	          .addResourceLocations("/resources/"); 
 	    }	
 	 
-	 @Bean
-	 public DataSource dataSource(){
-	               return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
-	            		   .setName("codeDB")
-	            		   .build();
-	 }
+//	 @Bean
+//	 public DataSource dataSource(){
+//	               return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
+//	            		   .setName("codeDB")
+//	            		   .build();
+//	 }
 	 
 	 @Bean
 	 public JpaVendorAdapter jpaVendorAdapter() {
 		 
 		 HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		 adapter.setDatabase(Database.H2);
+		 //adapter.setDatabase(Database.MYSQL);
 		 adapter.setShowSql(true);
 		 adapter.setGenerateDdl(true);
 		 return adapter;
 	 }
 	 
 	 @Bean
-	 public LocalContainerEntityManagerFactoryBean localContainerEMF(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter  ) {
+	 public LocalContainerEntityManagerFactoryBean localContainerEMF(DataSource myDataSource, JpaVendorAdapter jpaVendorAdapter  ) {
 		 LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean(); 	
-		 emf.setDataSource(dataSource);
+		 emf.setDataSource(myDataSource);
 		 emf.setJpaVendorAdapter(jpaVendorAdapter);
-		 emf.setPersistenceUnitName("basicEntities");
+		// emf.setPersistenceUnitName("basicEntities");
 		 emf.setPackagesToScan("SpringCrmRestAPI");
 		 return emf;
 	 }	 
