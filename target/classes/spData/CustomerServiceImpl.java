@@ -1,6 +1,7 @@
 package SpringCrmRestAPI.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,16 +39,18 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public Customer getCustomer(int theId) {
 		
+		Customer customer = customerDAO.findById(theId).get();
 		
-		return customerDAO.findCustomer(theId);
+		return customer;
+		//return customerDAO.findCustomer(theId);
 	}
 
 	@Override
 	@Transactional
 	public void deleteCustomer(int theId) {
 		
-		Customer theCustomer = customerDAO.findCustomer(theId);
-		customerDAO.delete(theCustomer);
+		Customer customer = customerDAO.findById(theId).get();
+		customerDAO.delete(customer);
 	}
 }
 

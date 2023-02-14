@@ -13,7 +13,7 @@ import SpringCrmRestAPI.entity.Customer;
 
 
 //@Transactional
-public interface UserRepository extends  JpaRepository <Customer, Long>, CustomUserRepository {
+public interface UserRepository extends  JpaRepository <Customer, Integer>, CustomUserRepository {
 
 //	@Query("SELECT c FROM Customer c join fetch c.firstName join fetch c.email order by c.id")
 //	List<Customer> findAllFetchNameAndRoles();
