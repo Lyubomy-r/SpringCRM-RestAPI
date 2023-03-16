@@ -46,7 +46,7 @@
 			<version>2.9.5</version>
 		</dependency>
 		
-		<!--Sspring Security-->
+		<!--Spring Security-->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
@@ -105,8 +105,6 @@
 			<version>1.2</version>
 		</dependency>
 
-
-		<!-- to compensate for java 9 not including jaxb -->
 		<dependency>
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
@@ -120,9 +118,6 @@
 		<finalName>spring-crm-rest</finalName>
 
 		<plugins>
-
-			<!-- Builds a Web Application Archive (WAR) file from the project output 
-				and its dependencies. -->
 			<plugin>
 				<!-- Add Maven coordinates (GAV) for: maven-war-plugin -->
 				<groupId>org.apache.maven.plugins</groupId>
